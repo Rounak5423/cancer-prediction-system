@@ -4,4 +4,4 @@ __pycache__/
 .env
 .ipynb_checkpoints/
 .DS_Store
-data/TCGA.BRCA.sampleMap_HiSeqV2/
+data/
