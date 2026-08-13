@@ -12,7 +12,8 @@ class GenomePreprocessor:
         dataset=dataset.T
         dataset=dataset.reset_index()
         dataset.rename(
-            columns={"index" : "patient_id"}
+            columns={"index" : "patient_id"},
+            inplace=True
         )
         return dataset
     def save_processed_datasets(self,dataset,filename):
@@ -23,7 +24,7 @@ class GenomePreprocessor:
 
     def create_labels(self,dataset):
         labels=[]
-        for patient in dataset["patient_id"]:
+        for patient in dataset["patient_id"]: 
             sample_type = patient.split("-")[-1]
 
             if sample_type=="01":
@@ -31,6 +32,11 @@ class GenomePreprocessor:
             elif sample_type=="11":
                 labels.append(0)
             else:
-                labels.append=None
+                labels.append(None)
         dataset["label"]=labels
         return dataset
+
+    def split_features_and_target(self,dataset):
+        x=dataset.drop(columns=["patient_id","label"])
+        y=dataset["label"]
+        return x,y
