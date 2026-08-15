@@ -36,6 +36,11 @@ trainer=ModelTrainer()
 
 #split into training and testing sets
 x_train,x_test,y_train,y_test= trainer.split_dataset(x,y)
+model=trainer.train_logistic_regression(
+    x_train,
+    y_train
+)
+print("\n model trained successfully!")
 
 #verify
 print("Training feature  :",x_train.shape)
